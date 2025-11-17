@@ -1,0 +1,236 @@
+{
+  "classes": [
+    {
+      "id": "qzn368hvv",
+      "name": "9",
+      "section": "A",
+      "subject": "Maths",
+      "teacher": "Current Teacher",
+      "capacity": 40,
+      "createdAt": "2025-11-16T04:00:27.900Z"
+    }
+  ],
+  "students": [
+    {
+      "id": "841cb66207fca3bf",
+      "name": "Alice Johnson",
+      "rollNo": "S001",
+      "classId": "qzn368hvv",
+      "email": "alice@example.com",
+      "phone": "",
+      "notes": "",
+      "enrolledAt": "2025-11-16T03:31:40.580Z"
+    },
+    {
+      "id": "e04e64f575e33bc4",
+      "name": "Bob Smith",
+      "rollNo": "S002",
+      "classId": "qzn368hvv",
+      "email": "bob@example.com",
+      "phone": "",
+      "notes": "",
+      "enrolledAt": "2025-11-16T03:31:40.580Z"
+    }
+  ],
+  "attendance": [
+    {
+      "id": "qzjj6ia3k",
+      "classId": "qzn368hvv",
+      "studentId": "841cb66207fca3bf",
+      "date": "2025-11-16",
+      "status": "present",
+      "reason": "",
+      "recordedAt": "2025-11-16T04:07:57.803Z"
+    },
+    {
+      "id": "9db3wlmus",
+      "classId": "qzn368hvv",
+      "studentId": "841cb66207fca3bf",
+      "date": "2025-11-16",
+      "status": "present",
+      "reason": "",
+      "recordedAt": "2025-11-16T04:08:16.749Z"
+    },
+    {
+      "id": "q7m0rcgm0",
+      "classId": "qzn368hvv",
+      "studentId": "841cb66207fca3bf",
+      "date": "2025-11-16",
+      "status": "present",
+      "reason": "",
+      "recordedAt": "2025-11-16T04:09:53.511Z"
+    },
+    {
+      "id": "8adpi4efd",
+      "classId": "qzn368hvv",
+      "studentId": "841cb66207fca3bf",
+      "date": "2025-11-16",
+      "status": "present",
+      "reason": "",
+      "recordedAt": "2025-11-16T04:10:01.191Z"
+    },
+    {
+      "id": "o4xtzk3ft",
+      "classId": "qzn368hvv",
+      "studentId": "841cb66207fca3bf",
+      "date": "2025-11-16",
+      "status": "present",
+      "reason": "",
+      "recordedAt": "2025-11-16T04:10:17.759Z"
+    },
+    {
+      "id": "eqbvzrwz9",
+      "classId": "qzn368hvv",
+      "studentId": "e04e64f575e33bc4",
+      "date": "2025-11-16",
+      "status": "present",
+      "reason": "",
+      "recordedAt": "2025-11-16T04:10:17.759Z"
+    },
+    {
+      "id": "bnsry2fhd",
+      "classId": "qzn368hvv",
+      "studentId": "841cb66207fca3bf",
+      "date": "2025-11-16",
+      "status": "present",
+      "reason": "",
+      "recordedAt": "2025-11-16T04:11:03.197Z"
+    },
+    {
+      "id": "nnj37x98t",
+      "classId": "qzn368hvv",
+      "studentId": "e04e64f575e33bc4",
+      "date": "2025-11-16",
+      "status": "present",
+      "reason": "",
+      "recordedAt": "2025-11-16T04:11:03.198Z"
+    },
+    {
+      "id": "kipoufixu",
+      "classId": "qzn368hvv",
+      "studentId": "841cb66207fca3bf",
+      "date": "2025-11-16",
+      "status": "present",
+      "reason": "",
+      "recordedAt": "2025-11-16T04:19:42.793Z"
+    },
+    {
+      "id": "9u7fpyvnu",
+      "classId": "qzn368hvv",
+      "studentId": "e04e64f575e33bc4",
+      "date": "2025-11-16",
+      "status": "present",
+      "reason": "",
+      "recordedAt": "2025-11-16T04:19:42.793Z"
+    },
+    {
+      "id": "eua642npu",
+      "classId": "qzn368hvv",
+      "studentId": "841cb66207fca3bf",
+      "date": "2025-11-16",
+      "status": "present",
+      "reason": "",
+      "recordedAt": "2025-11-16T04:35:10.886Z"
+    },
+    {
+      "id": "521va80qx",
+      "classId": "qzn368hvv",
+      "studentId": "e04e64f575e33bc4",
+      "date": "2025-11-16",
+      "status": "present",
+      "reason": "",
+      "recordedAt": "2025-11-16T04:35:10.886Z"
+    },
+    {
+      "id": "pza4x0t30",
+      "classId": "qzn368hvv",
+      "studentId": "841cb66207fca3bf",
+      "date": "2025-11-16",
+      "status": "present",
+      "reason": "",
+      "recordedAt": "2025-11-16T04:36:30.299Z"
+    },
+    {
+      "id": "d9nyrrv2z",
+      "classId": "qzn368hvv",
+      "studentId": "e04e64f575e33bc4",
+      "date": "2025-11-16",
+      "status": "absent",
+      "reason": "",
+      "recordedAt": "2025-11-16T04:36:30.299Z"
+    }
+  ],
+  "assignments": [
+    {
+      "id": "0c8b2lrmq",
+      "classId": "S001",
+      "title": "gjk",
+      "description": "vvb",
+      "dueDate": "20/02/2025",
+      "totalMarks": 100,
+      "type": "assignment",
+      "submissions": [],
+      "createdAt": "2025-11-16T04:11:31.878Z"
+    },
+    {
+      "id": "6rwkwfwrm",
+      "classId": "qzn368hvv",
+      "title": "maths",
+      "description": "",
+      "dueDate": "2025-11-25",
+      "totalMarks": 100,
+      "type": "assignment",
+      "submissions": [],
+      "createdAt": "2025-11-16T04:20:14.080Z"
+    }
+  ],
+  "grades": [
+    {
+      "id": "bktwiv8a5",
+      "classId": "qzn368hvv",
+      "studentId": "841cb66207fca3bf",
+      "assignmentId": "6rwkwfwrm",
+      "marksObtained": 80,
+      "feedback": "",
+      "gradedAt": "2025-11-16T04:20:33.799Z"
+    },
+    {
+      "id": "kvdupnpzj",
+      "classId": "qzn368hvv",
+      "studentId": "e04e64f575e33bc4",
+      "assignmentId": "6rwkwfwrm",
+      "marksObtained": 65,
+      "feedback": "",
+      "gradedAt": "2025-11-16T04:20:33.803Z"
+    }
+  ],
+  "communications": [],
+  "resources": [],
+  "participationLog": [],
+  "meetings": [],
+  "timetable": [],
+  "teachers": [
+    {
+      "id": "62452b5ccd2cbd9c",
+      "username": "admin",
+      "passwordHash": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
+      "name": "Administrator",
+      "school": "Central School",
+      "subjects": [
+        "Admin"
+      ],
+      "createdAt": "2025-11-16T03:31:40.579Z"
+    }
+  ],
+  "teacherRequests": [],
+  "sessions": {
+    "8w6518eap": {
+      "teacherId": "62452b5ccd2cbd9c",
+      "createdAt": 1763265609587
+    },
+    "tz5uhdq4p": {
+      "teacherId": "62452b5ccd2cbd9c",
+      "createdAt": 1763267854808
+    }
+  }
+}

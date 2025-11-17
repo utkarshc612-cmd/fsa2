@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Teacher Management System</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- Login Overlay (shown first) -->
+    <div id="login-overlay" class="login-overlay">
+      <div class="login-box">
+        <h2>Teacher Login</h2>
+        <input id="login-username" placeholder="Username" />
+        <input id="login-password" placeholder="Password" type="password" />
+        <div class="login-actions">
+          <button id="login-submit" class="btn btn-primary">Log in</button>
+          <button id="open-request" class="btn">Request Account</button>
+        </div>
+        <p class="muted">If you don't have an account ask the admin or click Request Account.</p>
+      </div>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="logo" id="sidebar-user">
+        <div class="avatar small" id="sidebar-avatar">T</div>
+        <div class="sidebar-user-info">
+          <div id="sidebar-username">Not signed in</div>
+          <div id="sidebar-user-role" class="muted">Guest</div>
+        </div>
+      </div>
+      <nav class="menu">
+        <a href="#" class="menu-item active" data-page="dashboard">� Dashboard</a>
+        <a href="#" class="menu-item" data-page="classes">👥 Classes</a>
+        <a href="#" class="menu-item" data-page="students">👨‍🎓 Students</a>
+        <a href="#" class="menu-item" data-page="attendance">📋 Attendance</a>
+        <a href="#" class="menu-item" data-page="assignments">📝 Assignments</a>
+        <a href="#" class="menu-item" data-page="gradebook">📊 Gradebook</a>
+        <a href="#" class="menu-item" data-page="analytics">📈 Analytics</a>
+        <a href="#" class="menu-item" data-page="resources">📚 Resources</a>
+        <a href="#" class="menu-item" data-page="communications">💬 Communications</a>
+        <a href="#" class="menu-item" data-page="meetings">🤝 Meetings</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Top Bar -->
+      <div class="topbar">
+        <h2 id="page-title">Dashboard</h2>
+        <div class="user-profile">
+          <span id="user-display">Not signed in</span>
+          <button id="btn-login" class="btn btn-small">Log in</button>
+          <button id="btn-logout" class="btn btn-small" style="display:none;">Log out</button>
+          <div class="avatar">T</div>
+        </div>
+      </div>
+
+      <!-- Content Pages -->
+      <div class="content">
+        <!-- Dashboard Page -->
+        <section id="dashboard" class="page active">
+          <div class="grid">
+            <div class="card stat-card">
+              <h3>Total Classes</h3>
+              <p class="stat-number" id="stat-classes">0</p>
+            </div>
+            <div class="card stat-card">
+              <h3>Total Students</h3>
+              <p class="stat-number" id="stat-students">0</p>
+            </div>
+            <div class="card stat-card">
+              <h3>Avg Attendance</h3>
+              <p class="stat-number" id="stat-attendance">0%</p>
+            </div>
+            <div class="card stat-card">
+              <h3>Pending Assignments</h3>
+              <p class="stat-number" id="stat-assignments">0</p>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Quick Actions</h3>
+            <div class="button-group">
+              <button class="btn btn-primary" data-action="new-class">+ New Class</button>
+              <button class="btn btn-primary" data-action="add-student">+ Add Student</button>
+              <button class="btn btn-primary" data-action="mark-attendance">📋 Mark Attendance</button>
+              <button class="btn btn-primary" data-action="create-assignment">📝 Create Assignment</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Classes Page -->
+        <section id="classes" class="page">
+          <div class="card">
+            <h3>My Classes</h3>
+            <button class="btn btn-primary" data-action="new-class">+ New Class</button>
+            <div id="classes-list" class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Class Name</th>
+                    <th>Section</th>
+                    <th>Subject</th>
+                    <th>Students</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="classes-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- Students Page -->
+        <section id="students" class="page">
+          <div class="card">
+            <h3>Students</h3>
+            <button class="btn btn-primary" data-action="add-student">+ Add Student</button>
+            <button class="btn btn-secondary" data-action="bulk-import">📥 Bulk Import (CSV)</button>
+            <div id="students-list" class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Roll No</th>
+                    <th>Class</th>
+                    <th>Attendance %</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="students-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- Attendance Page -->
+        <section id="attendance" class="page">
+          <div class="card">
+            <h3>Mark Attendance</h3>
+            <select id="attendance-class" class="input">
+              <option>Select Class</option>
+            </select>
+            <div id="attendance-form" class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Student</th>
+                    <th>Status</th>
+                    <th>Reason</th>
+                  </tr>
+                </thead>
+                <tbody id="attendance-tbody"></tbody>
+              </table>
+            </div>
+            <button class="btn btn-primary" id="save-attendance">Save Attendance</button>
+          </div>
+        </section>
+
+        <!-- Assignments Page -->
+        <section id="assignments" class="page">
+          <div class="card">
+            <h3>Assignments</h3>
+            <button class="btn btn-primary" data-action="create-assignment">+ Create Assignment</button>
+            <div id="assignments-list" class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Class</th>
+                    <th>Due Date</th>
+                    <th>Submissions</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="assignments-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- Gradebook Page -->
+        <section id="gradebook" class="page">
+          <div class="card">
+            <h3>Gradebook</h3>
+            <select id="gradebook-class" class="input">
+              <option>Select Class</option>
+            </select>
+            <select id="gradebook-assignment" class="input">
+              <option>Select Assignment</option>
+            </select>
+            <div id="gradebook-form" class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Student</th>
+                    <th>Marks</th>
+                    <th>Feedback</th>
+                  </tr>
+                </thead>
+                <tbody id="gradebook-tbody"></tbody>
+              </table>
+            </div>
+            <button class="btn btn-primary" id="save-grades">Save Grades</button>
+          </div>
+        </section>
+
+        <!-- Analytics Page -->
+        <section id="analytics" class="page">
+          <div class="grid">
+            <div class="card">
+              <h3>Top Performers</h3>
+              <div id="top-performers"></div>
+            </div>
+            <div class="card">
+              <h3>Weak Topics</h3>
+              <div id="weak-topics"></div>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Class Performance</h3>
+            <div style="display:flex;gap:12px;align-items:center;margin-bottom:12px;">
+              <label for="analytics-class-select" class="muted">Class:</label>
+              <select id="analytics-class-select" class="input" style="max-width:320px;"></select>
+              <div id="analytics-overall" class="muted" style="margin-left:auto;font-weight:600"></div>
+            </div>
+            <canvas id="performance-chart"></canvas>
+          </div>
+        </section>
+
+        <!-- Resources Page -->
+        <section id="resources" class="page">
+          <div class="card">
+            <h3>Learning Resources</h3>
+            <button class="btn btn-primary" data-action="upload-resource">+ Upload Resource</button>
+            <div id="resources-list"></div>
+          </div>
+        </section>
+
+        <!-- Communications Page -->
+        <section id="communications" class="page">
+          <div class="card">
+            <h3>Messages & Announcements</h3>
+            <div id="messages-list"></div>
+            <div class="form-group">
+              <textarea id="message-input" placeholder="Type a message..."></textarea>
+              <button class="btn btn-primary" id="send-message">Send Message</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Meetings Page -->
+        <section id="meetings" class="page">
+          <div class="card">
+            <h3>Parent-Teacher Meetings</h3>
+            <button class="btn btn-primary" data-action="schedule-meeting">+ Schedule Meeting</button>
+            <div id="meetings-list" class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Student</th>
+                    <th>Parent</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="meetings-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+  <!-- Request Account Page (shown when user clicks Request Account) -->
+  <section id="request-account" class="page">
+    <div class="card" style="max-width:640px; margin:40px auto;">
+      <h3>Request Teacher Account</h3>
+      <p>If you are a teacher and need an account, submit the request below. The admin will review and create your account.</p>
+      <div class="form-group">
+        <label for="req-name">Full name</label>
+        <input id="req-name" placeholder="Full name" />
+      </div>
+      <div class="form-group">
+        <label for="req-school">School name</label>
+        <input id="req-school" placeholder="School name" />
+      </div>
+      <div class="form-group">
+        <label for="req-email">Email (optional)</label>
+        <input id="req-email" placeholder="Email (optional)" />
+      </div>
+      <div class="form-group">
+        <label for="req-subjects">Subjects (comma-separated)</label>
+        <input id="req-subjects" placeholder="Subjects (comma-separated)" />
+      </div>
+      <div style="display:flex; gap:8px; justify-content:flex-end; margin-top:12px;">
+        <button id="req-submit" class="btn btn-primary">Submit Request</button>
+        <button id="req-cancel" class="btn">Cancel</button>
+      </div>
+    </div>
+  </section>
+  <!-- Connect Student Modal -->
+  <div id="connect-student-modal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <h3>Connect Student to Class</h3>
+      <p id="connect-modal-classname" class="muted"></p>
+      <div id="connect-student-list" style="max-height:300px; overflow:auto; margin-top:12px;"></div>
+      <div class="modal-actions">
+        <button id="connect-submit" class="btn btn-primary">Connect</button>
+        <button id="connect-cancel" class="btn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Create Assignment Modal -->
+  <div id="create-assignment-modal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <h3>Create Assignment</h3>
+      <div class="form-group">
+        <label for="ca-class">Class</label>
+        <select id="ca-class" class="input"></select>
+      </div>
+      <div class="form-group">
+        <label for="ca-title">Title</label>
+        <input id="ca-title" class="input" />
+      </div>
+      <div class="form-group">
+        <label for="ca-desc">Description</label>
+        <textarea id="ca-desc"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="ca-due">Due Date</label>
+        <input id="ca-due" class="input" placeholder="YYYY-MM-DD" />
+      </div>
+      <div class="form-group">
+        <label for="ca-total">Total Marks</label>
+        <input id="ca-total" class="input" type="number" value="100" />
+      </div>
+      <div class="modal-actions">
+        <button id="ca-submit" class="btn btn-primary">Create</button>
+        <button id="ca-cancel" class="btn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Schedule Meeting Modal -->
+  <div id="schedule-meeting-modal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <h3>Schedule Parent-Teacher Meeting</h3>
+      <div class="form-group">
+        <label for="sm-class">Class</label>
+        <select id="sm-class" class="input"></select>
+      </div>
+      <div class="form-group">
+        <label for="sm-student">Student</label>
+        <select id="sm-student" class="input"></select>
+      </div>
+      <div class="form-group">
+        <label for="sm-parent">Parent / Guardian Name</label>
+        <input id="sm-parent" class="input" />
+      </div>
+      <div class="form-group">
+        <label for="sm-date">Scheduled Date & Time</label>
+        <input id="sm-date" class="input" placeholder="YYYY-MM-DD HH:MM" />
+      </div>
+      <div class="modal-actions">
+        <button id="sm-submit" class="btn btn-primary">Schedule</button>
+        <button id="sm-cancel" class="btn">Cancel</button>
+      </div>
+    </div>
+  </div>
+  <!-- Global loader & toasts -->
+  <div id="global-loader" class="loader-overlay" style="display:none;" aria-hidden="true">
+    <div class="spinner" role="status" aria-live="polite">
+      <svg width="48" height="48" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="25" cy="25" r="20" fill="none" stroke="#e6eef8" stroke-width="6"></circle>
+        <path d="M45 25a20 20 0 0 0-20-20" stroke="currentColor" stroke-width="6" stroke-linecap="round" fill="none"/>
+      </svg>
+      <span class="sr-only">Loading</span>
+    </div>
+  </div>
+  <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>
